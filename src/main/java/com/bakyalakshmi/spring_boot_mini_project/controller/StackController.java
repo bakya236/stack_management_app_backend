@@ -38,6 +38,7 @@ public class StackController {
     }
 
     @GetMapping("/stacks")
+    @CrossOrigin(origins = "http://localhost:4200")
     public List<Stack> fetchStackList() {
         return stackservice.fetchStackList();
     }

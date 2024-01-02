@@ -7,6 +7,7 @@ import com.bakyalakshmi.spring_boot_mini_project.repository.UsageHistoryReposito
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Service
@@ -17,17 +18,26 @@ public class UsageHistoryServiceImpl  implements UsageHistoryService {
 
 
     @Override
-    public List<UsageHistory> fetchUsageHistoryByStackId(int stackId) {
+    public List<UsageHistory> fetchUsageHistoryByStackId(Long stackId) {
         return usageHistoryRepository.findAllByStackId(stackId);
+    }
+
+    @Override
+    public UsageHistory fetchActiveUsageHistoryByStackId(Long stackId) {
+        return usageHistoryRepository.findActiveUsageHistoryByStackId(stackId);
     }
 
     @Override
     public UsageHistory saveUsageHistory(UsageHistoryDto usageHistoryDto) {
 
         UsageHistory usageHistory = new UsageHistory();
-        usageHistory.setFrontEndBranch(usageHistoryDto.getFrontEndBranch());
-        usageHistory.setBackEndBranch(usageHistoryDto.getBackEndBranch());
+
+        usageHistory.setFrontendBranch(usageHistoryDto.getFrontendBranch());
+        usageHistory.setBackendBranch(usageHistoryDto.getBackendBranch());
         usageHistory.setUserEmail(usageHistoryDto.getUserEmail());
+        usageHistory.setStartedAt(usageHistoryDto.getStartedAt());
+        usageHistory.setEndedAt(usageHistoryDto.getEndedAt());
+        usageHistory.setId(usageHistoryDto.getId());
 
         Stack stack = new Stack();
         stack.setId(usageHistoryDto.getStackId());

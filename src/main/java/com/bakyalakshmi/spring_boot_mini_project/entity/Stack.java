@@ -2,8 +2,11 @@ package com.bakyalakshmi.spring_boot_mini_project.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import java.util.List;
+import java.math.BigInteger;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -15,7 +18,7 @@ public class Stack {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @NonNull
     private String name;
     @NonNull
@@ -23,6 +26,12 @@ public class Stack {
     @Builder.Default
     @Column(columnDefinition = "boolean default true")
     private Boolean availability = true;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    private LocalDateTime modifiedAt;
 }
 
 

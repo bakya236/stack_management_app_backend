@@ -4,6 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
+import java.math.BigInteger;
+import java.time.LocalDateTime;
 
 //@Component
 @Data
@@ -12,9 +17,13 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UsageHistoryDto {
 
-    private String frontEndBranch;
-    private String backEndBranch;
+    private Long id;
+    private String frontendBranch;
+    private String backendBranch;
     private String userEmail;
-    private int stackId;
+    private Long stackId;
+    private LocalDateTime startedAt;
+    private LocalDateTime endedAt;
+
 
 }

@@ -7,9 +7,12 @@ import com.bakyalakshmi.spring_boot_mini_project.service.UsageHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class UsageHistoryController {
 
     @Autowired
@@ -19,7 +22,7 @@ public class UsageHistoryController {
     StackService stackService;
 
     @GetMapping("/usagehistory/{id}")
-    private List<UsageHistory> fetchUsageHistoryByStackId(@PathVariable("id") int stackId){
+    private List<UsageHistory> fetchUsageHistoryByStackId(@PathVariable("id") Long stackId){
         return usageHistoryService.fetchUsageHistoryByStackId(stackId);
     }
 
@@ -28,5 +31,7 @@ public class UsageHistoryController {
         stackService.changeStackToNotAvailable(usageHistoryDto.getStackId());
         return usageHistoryService.saveUsageHistory(usageHistoryDto);
     }
+
+
 
 }
